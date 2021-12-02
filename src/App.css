@@ -97,6 +97,182 @@
     transform-origin: right;
 }
 
+/* The following will add style to an existing leaflet class */
+.leaflet-popup-content {
+    min-width: 150px;
+    margin: 10px;
+}
+
+.popup-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+
+.popup-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.popup-field-header,
+.popup-field-value {
+    flex: 1;
+}
+
+.popup-field-value {
+    font-weight: bolder;
+    font-size: 1.7em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.community-profile-container {
+    padding: 2% 5%;
+    padding-bottom: 3%;
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+.community-profile-container.not-yet-loaded {
+    opacity: 0;
+}
+
+.profile-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.profile-subtitle {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.profile-top-divider {
+    border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+    padding-bottom: 10px;
+}
+
+.community-figures {
+    width: 100%;
+}
+
+.row-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 0 0 1px;
+}
+
+.row-title {
+    font-size: 1rem;
+}
+
+.row-data {
+    font-weight: bolder;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-section {
+    width: 100%;
+    padding: 2% 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.community-charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.pie-container {
+    height: 160px;
+    width: 50%;
+}
+
+@media (max-width: 700px) {
+    .pie-container {
+        width: 100%;
+    }
+}
+
+.chart-divider {
+    width: 100%;
+    height: 0%;
+    border: none;
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 701px) {
+    .chart-divider {
+        width: 0;
+        height: 0;
+        border: none;
+    }
+}
+
+.community-bottom-text {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.community-bottom-text p {
+    padding: 0;
+    margin: 0;
+    font-style: italic;
+    color: rgb(150, 150, 150);
+    font-size: 0.81em;
+}
+
+.figure-cell {
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.figure-cell:nth-of-type(even) {
+    text-align: right;
+}
+
+.figure-cell:nth-of-type(odd) {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cell-title {
+    color: rgb(110, 110, 110);
+    font-size: 0.9em;
+    padding-bottom: 5px;
+}
+
+.cell-info {
+    font-weight: bolder;
+}
+
+.community-data-source-link {
+    margin-top: 16px;
+}
+
 @media (min-width: 800px) {
     .fixed-layer-plate .esriSFSSolid::after {
         content: unset;

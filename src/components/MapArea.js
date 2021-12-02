@@ -10,7 +10,7 @@ import Layer from "./Layer";
 
 const MapArea = ({ setEsriLayer, setOpenPopup }) => {
     // Refs:
-    const mapRef = useRef(); // assigning map container to ref, to access throughout component
+    const mapRef = useRef(); // assigning map container to ref, to access throughout component (initially set by `assignToRef` method)
 
     // Methods:
     const assignToRef = (map) => {

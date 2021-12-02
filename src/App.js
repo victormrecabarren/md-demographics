@@ -4,6 +4,7 @@ import "./App.css";
 // Components:
 import MapArea from "./components/MapArea";
 import Legend from "./components/Legend";
+import CommunityProfile from "./components/CommunityProfile";
 
 function App() {
     //State:
@@ -34,6 +35,7 @@ function App() {
                     setOpenPopup={setOpenPopup}
                 />
                 <Legend esriLayer={esriLayer} drawingInfo={legendData} />
+                {openPopup ? <CommunityProfile openPopup={openPopup} /> : null}
             </div>
         </div>
     );

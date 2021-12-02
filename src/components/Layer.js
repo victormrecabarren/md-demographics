@@ -11,22 +11,14 @@ const CustomReactPopup = ({ feature }) => {
             <h3>
                 <div className="popup-title">{feature.FullCounty} </div>
             </h3>
-            <h3 className="popup-health">
-                <div className="popup-data-container">
-                    <div className="field-header">
-                        Asthma emergency department visits, per 10,000
-                        population:
-                    </div>{" "}
-                    <div className="field-value">AgeAdjustedRate</div>
+
+            <div className="popup-data-container">
+                <div className="popup-field-header">
+                    Asthma emergency department visits, per 10,000 population:
                 </div>
-            </h3>
-            <div className="demographic-data-link-container">
-                <a
-                    href="#community-profile"
-                    className="unset-anchor-styles demographic-data-link"
-                >
-                    See demographic data
-                </a>
+                <div className="popup-field-value">
+                    {feature.AgeAdjustedRate}
+                </div>
             </div>
         </>
     );
