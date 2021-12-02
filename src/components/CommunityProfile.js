@@ -17,7 +17,6 @@ const CommunityProfile = ({ openPopup }) => {
     const [state, setState] = useState({
         // Jurisdiction codes:
         MDCode: "",
-        TractNo: "",
         // General population variables:
         EstTotalPop: "",
         // Age variables:
@@ -61,7 +60,6 @@ const CommunityProfile = ({ openPopup }) => {
                 const {
                     // Jurisdiction codes:
                     MDCode,
-                    TractNo,
                     // Age variables:
                     CalcFemale0to19,
                     CalcFemale20to44,

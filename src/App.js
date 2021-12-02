@@ -29,12 +29,16 @@ function App() {
     }, []);
     return (
         <div className="App">
-            <div id="webMap">
-                <MapArea
-                    setEsriLayer={setEsriLayer}
-                    setOpenPopup={setOpenPopup}
-                />
+            <div className="sheet">
+                <div id="webMap">
+                    <MapArea
+                        setEsriLayer={setEsriLayer}
+                        setOpenPopup={setOpenPopup}
+                    />
+                </div>
                 <Legend esriLayer={esriLayer} drawingInfo={legendData} />
+            </div>
+            <div className="sheet">
                 {openPopup ? <CommunityProfile openPopup={openPopup} /> : null}
             </div>
         </div>
