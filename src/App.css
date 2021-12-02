@@ -162,6 +162,11 @@
     width: 100%;
 }
 
+.cell-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .row-section {
     display: flex;
     flex-direction: column;
@@ -257,6 +262,7 @@
 
 .figure-cell:nth-of-type(odd) {
     border-right: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 
 .cell-title {

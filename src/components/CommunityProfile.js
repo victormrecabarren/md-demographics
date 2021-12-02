@@ -171,7 +171,7 @@ const CommunityProfile = ({ openPopup }) => {
         openPopup.properties.County,
     ]);
 
-    if (!acsLink) return null;
+    // if (!acsLink) return null;
     return (
         <div
             id="community-profile"
@@ -310,7 +310,6 @@ const CommunityProfile = ({ openPopup }) => {
                         </div>
                         <hr className="chart-divider" />
                         <div className="pie-container">
-                            {console.log("raceDate: ", raceData)}
                             <Pie
                                 ref={pieRef}
                                 data={raceData}
