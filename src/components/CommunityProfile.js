@@ -50,124 +50,123 @@ const CommunityProfile = ({ openPopup }) => {
         // Use appropriate endpoint and parameter value for county view
         const endpoint = `${config.countyACSEndpoint}%27${openPopup.properties.MDCode}%27`;
 
-        fetch(endpoint)
-            .then((res) => res.json())
-            .then((json) => {
-                // Extracting the following nested variables with a fallback at each level to ensure a TypeError is not thrown. Destructure will expect either an array or an object -- if destructuring results in an `undefined` at any point, will fallback on the expected type.
-                const { features } = json || {};
-                const [feature] = features || [];
-                const { attributes } = feature || {};
-                const {
-                    // Jurisdiction codes:
-                    MDCode,
-                    // Age variables:
-                    CalcFemale0to19,
-                    CalcFemale20to44,
-                    CalcFemale45to64,
-                    CalcFemale65Plus,
-                    CalcMale0to19,
-                    CalcMale20to44,
-                    CalcMale45to64,
-                    CalcMale65Plus,
-                    // Race variables:
-                    CalcWhitePct,
-                    CalcBlackPct,
-                    CalcAsianPct,
-                    CalcHLPct,
-                    CalcOtherRacePct,
-                    CalcTwoOrMorePct,
-                } = attributes || {};
+        // using acsLink to check if data has been fetched, to avoid unecessary network request.
+        if (!acsLink) {
+            fetch(endpoint)
+                .then((res) => res.json())
+                .then((json) => {
+                    // Extracting the following nested variables with a fallback at each level to ensure a TypeError is not thrown. Destructure will expect either an array or an object -- if destructuring results in an `undefined` at any point, will fallback on the expected type.
+                    const { features } = json || {};
+                    const [feature] = features || [];
+                    const { attributes } = feature || {};
+                    const {
+                        // Jurisdiction codes:
+                        MDCode,
+                        // Age variables:
+                        CalcFemale0to19,
+                        CalcFemale20to44,
+                        CalcFemale45to64,
+                        CalcFemale65Plus,
+                        CalcMale0to19,
+                        CalcMale20to44,
+                        CalcMale45to64,
+                        CalcMale65Plus,
+                        // Race variables:
+                        CalcWhitePct,
+                        CalcBlackPct,
+                        CalcAsianPct,
+                        CalcHLPct,
+                        CalcOtherRacePct,
+                        CalcTwoOrMorePct,
+                    } = attributes || {};
 
-                setState((prevState) => ({ ...prevState, ...attributes }));
+                    setState((prevState) => ({ ...prevState, ...attributes }));
 
-                // Note: the following categories MUST remain in this order to match with the order of the "labels" array defined at the top of this file
+                    // Note: the following categories MUST remain in this order to match with the order of the "labels" array defined at the top of this file
 
-                const racialBreakdown = [
-                    CalcWhitePct,
-                    CalcBlackPct,
-                    CalcAsianPct,
-                    CalcHLPct,
-                    CalcOtherRacePct,
-                    CalcTwoOrMorePct,
-                ];
+                    const racialBreakdown = [
+                        CalcWhitePct,
+                        CalcBlackPct,
+                        CalcAsianPct,
+                        CalcHLPct,
+                        CalcOtherRacePct,
+                        CalcTwoOrMorePct,
+                    ];
 
-                const customLabels = config.raceDataLabels.map(
-                    (label, i) =>
-                        `${label} - ${parseFloat(racialBreakdown[i]).toFixed(
-                            1
-                        )}%`
-                );
+                    const customLabels = config.raceDataLabels.map(
+                        (label, i) =>
+                            `${label} - ${parseFloat(
+                                racialBreakdown[i]
+                            ).toFixed(1)}%`
+                    );
 
-                const raceChartData = {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    labels: customLabels,
-                    datasets: [
-                        {
-                            label: `${openPopup.properties.County} Demographics`,
+                    const raceChartData = {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        labels: customLabels,
+                        datasets: [
+                            {
+                                label: `${openPopup.properties.County} Demographics`,
 
-                            data: racialBreakdown.map((datum) =>
-                                parseFloat(datum).toFixed(1)
-                            ),
-                            backgroundColor: config.piePalette.default,
-                            hoverBackgroundColor: config.piePalette.hover,
-                        },
-                    ],
-                };
+                                data: racialBreakdown.map((datum) =>
+                                    parseFloat(datum).toFixed(1)
+                                ),
+                                backgroundColor: config.piePalette.default,
+                                hoverBackgroundColor: config.piePalette.hover,
+                            },
+                        ],
+                    };
 
-                setRaceData(raceChartData);
+                    setRaceData(raceChartData);
 
-                const ageChartData = {
-                    labels: ["Male", "Female"],
-                    datasets: [
-                        {
-                            label: "0-19",
-                            data: [
-                                parseFloat(CalcMale0to19).toFixed(),
-                                parseFloat(CalcFemale0to19).toFixed(),
-                            ],
-                        },
-                        {
-                            label: "20-44",
-                            data: [
-                                parseFloat(CalcMale20to44).toFixed(),
-                                parseFloat(CalcFemale20to44).toFixed(),
-                            ],
-                        },
-                        {
-                            label: "45-64",
-                            data: [
-                                parseFloat(CalcMale45to64).toFixed(),
-                                parseFloat(CalcFemale45to64).toFixed(),
-                            ],
-                        },
-                        {
-                            label: "65+",
-                            data: [
-                                parseFloat(CalcMale65Plus).toFixed(),
-                                parseFloat(CalcFemale65Plus).toFixed(),
-                            ],
-                        },
-                    ],
-                };
-                ageChartData.datasets.forEach((dataset, index) => {
-                    dataset.backgroundColor =
-                        config.stackedBarsPalette.default[index];
-                    dataset.hoverBackgroundColor =
-                        config.stackedBarsPalette.hover[index];
-                });
-                setAgeData(ageChartData);
+                    const ageChartData = {
+                        labels: ["Male", "Female"],
+                        datasets: [
+                            {
+                                label: "0-19",
+                                data: [
+                                    parseFloat(CalcMale0to19).toFixed(),
+                                    parseFloat(CalcFemale0to19).toFixed(),
+                                ],
+                            },
+                            {
+                                label: "20-44",
+                                data: [
+                                    parseFloat(CalcMale20to44).toFixed(),
+                                    parseFloat(CalcFemale20to44).toFixed(),
+                                ],
+                            },
+                            {
+                                label: "45-64",
+                                data: [
+                                    parseFloat(CalcMale45to64).toFixed(),
+                                    parseFloat(CalcFemale45to64).toFixed(),
+                                ],
+                            },
+                            {
+                                label: "65+",
+                                data: [
+                                    parseFloat(CalcMale65Plus).toFixed(),
+                                    parseFloat(CalcFemale65Plus).toFixed(),
+                                ],
+                            },
+                        ],
+                    };
+                    ageChartData.datasets.forEach((dataset, index) => {
+                        dataset.backgroundColor =
+                            config.stackedBarsPalette.default[index];
+                        dataset.hoverBackgroundColor =
+                            config.stackedBarsPalette.hover[index];
+                    });
+                    setAgeData(ageChartData);
 
-                // Create ACS external link:
-                const currentLink = `https://www.census.gov/acs/www/data/data-tables-and-tools/narrative-profiles/2019/report.php?geotype=county&state=24&county=${MDCode}`;
-                setAcsLink(currentLink);
-            })
-            .catch(console.error);
-    }, [
-        openPopup.properties.MDCode,
-        openPopup.properties.Census_tract,
-        openPopup.properties.County,
-    ]);
+                    // Create ACS external link:
+                    const currentLink = `https://www.census.gov/acs/www/data/data-tables-and-tools/narrative-profiles/2019/report.php?geotype=county&state=24&county=${MDCode}`;
+                    setAcsLink(currentLink);
+                })
+                .catch(console.error);
+        }
+    }, [acsLink, openPopup.properties.MDCode, openPopup.properties.County]);
 
     // if (!acsLink) return null;
     return (

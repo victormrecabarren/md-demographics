@@ -4,6 +4,6 @@ A simple web app of a Maryland map, allowing a user to look up demographic infor
 
 ## To run:
 
--   Clone project, then run `npm i` in a terminal at project root
--   `npm start` will start a development server
+-   Clone project, then run `yarn install` in a terminal at project root
+-   `yarn start` will start a development server
 -   View the app at `localhost:3000`
