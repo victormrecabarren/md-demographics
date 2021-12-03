@@ -1,38 +1,289 @@
 .App {
-  text-align: center;
+    padding: 1rem;
+    background-color: rgb(245, 245, 245);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sheet {
+    margin: 0 auto;
+    max-width: 1500px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.myMap {
+    height: 40vh;
+    width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.fixed-layer-plate {
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 15px 0 5px;
+    height: fit-content;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.layer-title {
+    font-weight: 700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fixed-layer-plate .legend-items-container {
+    width: 85%;
+}
+
+.layer-subtitle {
+    text-align: center;
+    font-size: 0.82em;
+    padding: 2px;
+    position: relative;
+}
+
+.legend-items-container {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    width: 100%;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.esriSFSSolid {
+    width: 100%;
+    height: 16px;
+    box-sizing: border-box;
+    margin: 22px 0 60px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Part of this style will apply for smaller viewports only. See media query at end of file.  */
+.esriSFSSolid::after {
+    content: ""; /* Property will be unset for larger viewports*/
+    height: 10px;
+    width: 10px;
+    background: transparent;
+    display: block;
+    position: absolute;
+    border-left: 1px solid black;
+    left: 50%;
+    top: 100%;
+}
+
+/* Part of this style will apply for smaller viewports only. See media query at end of file.  */
+.legend-item-label {
+    width: fit-content;
+    white-space: nowrap;
+    position: absolute;
+    top: 20px;
+    right: 53%; /* Property will be unset for larger viewports*/
+    transform: rotate(-35deg); /* Property will be unset for larger viewports*/
+    transform-origin: right;
+}
+
+/* The following will add style to an existing leaflet class */
+.leaflet-popup-content {
+    min-width: 150px;
+    margin: 10px;
+}
+
+.popup-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+
+.popup-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.popup-field-header,
+.popup-field-value {
+    flex: 1;
+}
+
+.popup-field-value {
+    font-weight: bolder;
+    font-size: 1.7em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.community-profile-container {
+    padding: 2% 5%;
+    padding-bottom: 3%;
+    opacity: 1;
+    transition: opacity 0.25s;
+}
+
+.community-profile-container.not-yet-loaded {
+    opacity: 0;
+}
+
+.profile-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.profile-subtitle {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.profile-top-divider {
+    border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+    padding-bottom: 10px;
+}
+
+.community-figures {
+    width: 100%;
+}
+
+.cell-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 0 0 1px;
+}
+
+.row-title {
+    font-size: 1rem;
+}
+
+.row-data {
+    font-weight: bolder;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-section {
+    width: 100%;
+    padding: 2% 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.community-charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.pie-container {
+    height: 160px;
+    width: 50%;
+}
+
+@media (max-width: 700px) {
+    .pie-container {
+        width: 100%;
+    }
+}
+
+.chart-divider {
+    width: 100%;
+    height: 0%;
+    border: none;
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 701px) {
+    .chart-divider {
+        width: 0;
+        height: 0;
+        border: none;
+    }
+}
+
+.community-bottom-text {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.community-bottom-text p {
+    padding: 0;
+    margin: 0;
+    font-style: italic;
+    color: rgb(150, 150, 150);
+    font-size: 0.81em;
+}
+
+.figure-cell {
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.figure-cell:nth-of-type(even) {
+    text-align: right;
+}
+
+.figure-cell:nth-of-type(odd) {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.cell-title {
+    color: rgb(110, 110, 110);
+    font-size: 0.9em;
+    padding-bottom: 5px;
+}
+
+.cell-info {
+    font-weight: bolder;
+}
+
+.community-data-source-link {
+    margin-top: 16px;
+}
+
+@media (min-width: 800px) {
+    .fixed-layer-plate .esriSFSSolid::after {
+        content: unset;
+    }
+    .fixed-layer-plate .legend-item-label {
+        transform: unset;
+        right: unset;
+    }
 }
