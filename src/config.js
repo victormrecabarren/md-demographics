@@ -4,6 +4,7 @@ const config = {
         [37.91, -79.48],
     ],
     defaultMapZoom: 7,
+    asthmaService: `${process.env.REACT_APP_MAP_SERVICE}/Asthma_EDVisits_County/MapServer/0/?f=json`,
     countyACSEndpoint: `${process.env.REACT_APP_MAP_SERVICE}/DemographicProfile/MapServer/0/query?outFields=*&returnGeometry=false&f=json&where=MDCode%3D`,
     raceDataLabels: [
         "White",
