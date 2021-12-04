@@ -3,6 +3,16 @@
     background-color: rgb(245, 245, 245);
 }
 
+.app-header {
+    font-size: 1.25rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0;
+    padding: 15px 0;
+}
+
 .sheet {
     margin: 0 auto;
     max-width: 1500px;
@@ -22,7 +32,6 @@
     margin: 0 0 10px;
     padding: 15px 0 5px;
     height: fit-content;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

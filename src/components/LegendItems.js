@@ -6,8 +6,8 @@ const PointMarker = ({ breakInfo }) => {
             <div
                 className={breakInfo.style}
                 style={{
-                    height: `${breakInfo.size * 1}px`,
-                    width: `${breakInfo.size * 1}px`,
+                    height: `${breakInfo.size * 10}px`,
+                    width: `${breakInfo.size * 10}px`,
                     borderColor: "rgb(0,0,0)",
                     backgroundColor: `rgb(${r},${g},${b})`,
                 }}

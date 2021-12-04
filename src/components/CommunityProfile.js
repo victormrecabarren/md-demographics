@@ -15,6 +15,8 @@ const CommunityProfile = ({ openPopup }) => {
     const [ageData, setAgeData] = useState({});
     const [acsLink, setAcsLink] = useState("");
     const [state, setState] = useState({
+        // Jurisdiction title:
+        FullCounty: "",
         // Jurisdiction codes:
         MDCode: "",
         // General population variables:
@@ -168,7 +170,6 @@ const CommunityProfile = ({ openPopup }) => {
         }
     }, [acsLink, openPopup.properties.MDCode, openPopup.properties.County]);
 
-    // if (!acsLink) return null;
     return (
         <div
             id="community-profile"
@@ -178,7 +179,7 @@ const CommunityProfile = ({ openPopup }) => {
         >
             <div className="profile-title">
                 {state.TractName ? `${state.TractName} - ` : ""}{" "}
-                {`${state.FullCountyName || ""} Demographic Profile`}
+                {`${state.FullCounty || ""} Demographic Profile`}
             </div>
             <div className="profile-top-divider">
                 <small className="profile-subtitle">

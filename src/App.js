@@ -1,3 +1,4 @@
+//Modules:
 import { useState, useEffect } from "react";
 import "./App.css";
 
@@ -5,6 +6,9 @@ import "./App.css";
 import MapArea from "./components/MapArea";
 import Legend from "./components/Legend";
 import CommunityProfile from "./components/CommunityProfile";
+
+// Config:
+import config from "./config";
 
 function App() {
     //State:
@@ -15,9 +19,7 @@ function App() {
     // Effects:
     useEffect(() => {
         // fetch metadata from layer to create legend:
-        fetch(
-            `${process.env.REACT_APP_MAP_SERVICE}/Asthma_EDVisits_County/MapServer/0/?f=json`
-        )
+        fetch(config.asthmaService)
             .then((res) => res.json())
             .then((json) => {
                 setLegendData(json.drawingInfo);
@@ -30,6 +32,9 @@ function App() {
     return (
         <div className="App">
             <div className="sheet">
+                <h1 className="app-header">
+                    Emergency Department (ED) Visits for Asthma
+                </h1>
                 <div id="webMap">
                     <MapArea
                         setEsriLayer={setEsriLayer}

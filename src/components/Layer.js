@@ -52,7 +52,6 @@ const Layer = ({ setEsriLayer, setOpenPopup }) => {
 
             // on load/loading fn's:
             esriLayer.on({
-                loading: () => {},
                 load: (e) => {
                     if (!e.target._popup) {
                         esriLayer
